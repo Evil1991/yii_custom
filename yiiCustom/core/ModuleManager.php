@@ -1,7 +1,7 @@
 <?php
 namespace yiiCustom\core;
 
-use yiiCustom\Module;
+use yiiCustom\base\Module;
 use Yii;
 use yii\base\BootstrapInterface;
 use yii\base\Component;

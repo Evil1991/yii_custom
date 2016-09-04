@@ -1,8 +1,8 @@
 <?php
 
-namespace yiiCustom;
+namespace yiiCustom\base;
 
-use yii\log\FileTarget\base;
+use yii\log\FileTarget;
 
 /**
  * Упрощённый тип логгирования в файл (без лишних переменных окружения)

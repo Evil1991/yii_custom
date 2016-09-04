@@ -2,7 +2,7 @@
 
 namespace yiiCustom\behaviors;
 
-use yiiCustom\ActiveRecord;
+use yiiCustom\base\ActiveRecord;
 use yii\base\Behavior;
 use yii\base\Event;
 
