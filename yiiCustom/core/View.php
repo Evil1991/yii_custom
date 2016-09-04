@@ -2,7 +2,7 @@
 
 namespace yiiCustom\core;
 
-use YiiCustom\base\BreadcrumbCollection;
+use yiiCustom\base\BreadcrumbCollection;
 use Yii;
 
 /**

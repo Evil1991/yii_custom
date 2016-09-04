@@ -1,7 +1,7 @@
 <?php
 namespace yiiCustom\core;
 
-use YiiCustom\Module;
+use yiiCustom\Module;
 use common\modules\chat\Chat;
 use common\modules\game\Game;
 use common\modules\homeBackend\HomeBackend;

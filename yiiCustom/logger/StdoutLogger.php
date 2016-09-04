@@ -2,8 +2,8 @@
 
 namespace yiiCustom\logger;
 
-use YiiCustom\DateTimeZone;
-use YiiCustom\helpers\StringHelper;
+use yiiCustom\DateTimeZone;
+use yiiCustom\helpers\StringHelper;
 use Yii;
 use yii\base\Component;
 use yii\helpers\Console;

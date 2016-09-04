@@ -8,7 +8,7 @@ use yii\helpers\FileHelper;
 /**
  * Расширение темы под проект.
  *
- * @package YiiCustom\core
+ * @package yiiCustom\core
  */
 class Theme extends \yii\base\Theme {
 

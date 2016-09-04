@@ -6,9 +6,9 @@ class Yii extends \yii\BaseYii {
 }
 
 /**
- * @property-read \YiiCustom\core\ConfigManager $configManager
- * @property-read \YiiCustom\core\View          $view
- * @property-read \YiiCustom\core\ModuleManager $moduleManager
- * @property-read \YiiCustom\core\Environment   $env
+ * @property-read \yiiCustom\core\ConfigManager $configManager
+ * @property-read \yiiCustom\core\View          $view
+ * @property-read \yiiCustom\core\ModuleManager $moduleManager
+ * @property-read \yiiCustom\core\Environment   $env
  */
 class Application {}

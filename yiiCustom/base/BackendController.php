@@ -2,7 +2,7 @@
 
 namespace yiiCustom\base;
 
-use YiiCustom\core\WebController;
+use yiiCustom\core\WebController;
 use Yii;
 use yii\web\UnauthorizedHttpException;
 
