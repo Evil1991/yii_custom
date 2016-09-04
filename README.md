@@ -18,6 +18,21 @@ params
 --- localTimezoneOffset - смещение локальной таймзоны, которая берётся по умолчанию при форматировании даты-времени
 --- baseDomain          - основной домен сайта (без поддоментов, присущих точкам входа). Например: vasya.ru
                           Даже если у проекта есть поддомены типа: backend.vasya.ru, то здесь всё равно нужно указывать vasya.ru.
+                          
+Так же необходимо задать параметры для View:
+
+'components' => [
+    'view' => [
+			'class' => YiiCustom\core\View::class,
+			'theme' => [
+				'class' => YiiCustom\core\Theme::class,
+				'pathMap' => [
+					'@app/widgets' => '@theme',
+				]
+			],
+		],
+	]
+];
 
 _Автокомплит модулей:_
 

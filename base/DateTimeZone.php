@@ -22,11 +22,11 @@ class DateTimeZone extends \DateTimeZone {
 	public static function getTimezoneByUtcOffset($utcOffset, $countryIsoCode = 'RU') {
 		$utcOffset = (int) $utcOffset;
 		if (0 === $utcOffset) {
-			return new DateTimeZone('UTC');
+			return new static('UTC');
 		}
 
 		if ($countryIsoCode !== null) {
-			$timezoneIdentifiers = timezone_identifiers_list(DateTimeZone::PER_COUNTRY, 'RU');
+			$timezoneIdentifiers = timezone_identifiers_list(static::PER_COUNTRY, 'RU');
 		}
 		else {
 			$timezoneIdentifiers = timezone_identifiers_list();
