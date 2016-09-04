@@ -1,7 +1,7 @@
 <?php
 
 
-namespace YiiCustom\logger;
+namespace yiiCustom\logger;
 
 /**
  * Интерфейс потока логгирования.

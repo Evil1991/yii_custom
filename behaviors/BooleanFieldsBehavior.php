@@ -1,6 +1,6 @@
 <?php
 
-namespace YiiCustom\behaviors;
+namespace yiiCustom\behaviors;
 
 use YiiCustom\ActiveRecord;
 use yii\base\Behavior;

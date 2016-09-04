@@ -1,6 +1,6 @@
 <?php
 
-namespace YiiCustom\validators;
+namespace yiiCustom\validators;
 
 use yii\helpers\HtmlPurifier;
 use yii\validators\FilterValidator;

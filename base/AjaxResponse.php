@@ -1,6 +1,6 @@
 <?php
 
-namespace YiiCustom\base;
+namespace yiiCustom\base;
 
 /**
  * Класс-обёртка ответа контроллера на ajax-запрос

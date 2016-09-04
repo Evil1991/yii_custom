@@ -1,6 +1,6 @@
 <?php
 
-namespace YiiCustom\core;
+namespace yiiCustom\core;
 
 use Yii;
 use yii\helpers\StringHelper;

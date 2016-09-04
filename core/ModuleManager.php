@@ -1,5 +1,5 @@
 <?php
-namespace YiiCustom\core;
+namespace yiiCustom\core;
 
 use YiiCustom\Module;
 use Yii;

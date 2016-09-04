@@ -1,6 +1,6 @@
 <?php
 
-namespace YiiCustom\core;
+namespace yiiCustom\core;
 
 use YiiCustom\base\BreadcrumbCollection;
 use Yii;

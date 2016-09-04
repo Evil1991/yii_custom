@@ -1,5 +1,5 @@
 <?php
-namespace YiiCustom\validators;
+namespace yiiCustom\validators;
 
 use yii\validators\Validator;
 

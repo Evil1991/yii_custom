@@ -1,6 +1,6 @@
 <?php
 
-namespace YiiCustom\console\controllers;
+namespace yiiCustom\console\controllers;
 
 use common\modules\game\components\AuthorRule;
 use Yii;

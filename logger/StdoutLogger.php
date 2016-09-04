@@ -1,6 +1,6 @@
 <?php
 
-namespace YiiCustom\logger;
+namespace yiiCustom\logger;
 
 use YiiCustom\DateTimeZone;
 use YiiCustom\helpers\StringHelper;

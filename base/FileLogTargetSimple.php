@@ -1,6 +1,6 @@
 <?php
 
-namespace YiiCustom;
+namespace yiiCustom;
 
 use yii\log\FileTarget\base;
 

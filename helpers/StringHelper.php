@@ -1,6 +1,6 @@
 <?php
 
-namespace YiiCustom\helpers;
+namespace yiiCustom\helpers;
 
 /**
  * Расширение хелпера строк.

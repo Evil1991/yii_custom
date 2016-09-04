@@ -1,6 +1,6 @@
 <?php
 
-namespace YiiCustom\base;
+namespace yiiCustom\base;
 
 use YiiCustom\core\WebController;
 use Yii;

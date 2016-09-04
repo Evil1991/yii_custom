@@ -1,5 +1,5 @@
 <?php
-namespace YiiCustom\core;
+namespace yiiCustom\core;
 
 use yii\web\UrlRule;
 use Yii;
