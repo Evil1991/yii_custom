@@ -14,10 +14,11 @@ class FilterHtmlValidator extends FilterValidator {
 	 * @inheritdoc
 	 */
 	public function init() {
-		parent::init();
 		$this->filter = function ($value) {
 			return HtmlPurifier::process($value);
 		};
+
+		parent::init();
 	}
 
 }
