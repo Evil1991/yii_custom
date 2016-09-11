@@ -18,6 +18,15 @@ class View extends \yii\web\View {
 	/** @var bool Использовать ли свой заголовок во view */
 	public $useCustomTitle = false;
 
+	/** @var string Мета описание */
+	public $metaDescription;
+
+	/** @var string Мета ключевые слова */
+	public $metaKeywords;
+
+	/** @var string Мета информация для индексации ботами */
+	public $metaRobots;
+
 	/**
 	 * @inheritdoc
 	 */
