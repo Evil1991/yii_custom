@@ -12,6 +12,13 @@ use yii\db\Exception;
 class ActiveRecord extends \yii\db\ActiveRecord {
 
 	/**
+	 * @inheritdoc
+	 */
+	public static function find() {
+		return new ActiveQuery(get_called_class());
+	}
+
+	/**
 	 * Получение декодированного значения json-поля
 	 * @param $name
 	 * @return \string[]
