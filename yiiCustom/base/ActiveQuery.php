@@ -12,6 +12,8 @@ class ActiveQuery extends \yii\db\ActiveQuery {
 	 */
 	public function forUpdate() {
 		$this->isSelectForUpdate = true;
+
+		return $this;
 	}
 
 	/**
