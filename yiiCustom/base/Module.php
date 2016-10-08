@@ -118,9 +118,9 @@ class Module extends \yii\base\Module {
 	 */
 	protected function initSettings() {
 		$cacheKey       = __CLASS__ . 'moduleSettins-' . $this->id . '.v2';
-		$moduleSettings = Yii::$app->cache->get($cacheKey);/** @var RefModuleSetting[] $moduleSettings */
+		$loadedModuleSettings = Yii::$app->cache->get($cacheKey);/** @var RefModuleSetting[] $moduleSettings */
 
-		if ($moduleSettings === false) {
+		if ($loadedModuleSettings === false) {
 			$moduleSettings = RefModuleSetting::find()
 				->where([
 					RefModuleSetting::ATTR_MODULE_NAME => $this->id,
@@ -128,14 +128,18 @@ class Module extends \yii\base\Module {
 				->indexBy(RefModuleSetting::ATTR_PARAM_NAME)
 				->all();
 
-			Yii::$app->cache->set($cacheKey, $moduleSettings, 3600 * 2, new TagDependency([
+			Yii::$app->cache->set($cacheKey, $loadedModuleSettings, 3600 * 2, new TagDependency([
 				'tags' => RefModuleSetting::class,
 			]));
 		}
 
+		$moduleSettings = [];
 		//перебираем настройки из конфига. Если для какой-либо нет записи, то создаём пустую
 		foreach ($this->settingsConfig as $name => $settingConfig) {
-			if (array_key_exists($name, $moduleSettings) === false) {
+			if (array_key_exists($name, $loadedModuleSettings) === true) {
+				$moduleSettings[$name] = $loadedModuleSettings[$name];
+			}
+			else {
 				$setting = new RefModuleSetting();
 
 				$setting->module_name = $this->id;
