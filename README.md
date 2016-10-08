@@ -120,3 +120,6 @@ acl-init/create-acl-tables
 Для создания таблиц acl. А команду
 acl-init/remove-acl-tables
 Для удаления таблиц acl.
+
+Для запуска консольной инициализации настроек модулей необходимо прописать в конфиге точки входа console в секции "controllerMap" параметр:
+'moduleSettings' => \vendor\yii_custom\yiiCustom\console\controllers\ModuleSettingsInitController::class,

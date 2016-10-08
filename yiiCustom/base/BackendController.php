@@ -12,7 +12,7 @@ use yii\web\UnauthorizedHttpException;
 class BackendController extends WebController {
 
 	/** @var string Основная роль для доступа в админку. Если не задано, то доступ не будет проверяться на данном уровне */
-	protected $commonRoleAccess;
+	protected $commonRoleAccess = 'admin';
 
 	/** @var string URL для редиректа в случае отсутствия доступа. Если не задано, то будет выброшено исключение */
 	protected $noAccessRedirectUrl;
