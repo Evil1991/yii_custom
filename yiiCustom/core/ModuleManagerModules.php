@@ -1,15 +1,7 @@
 <?php
 namespace yiiCustom\core;
 
-use yiiCustom\Module;
-use common\modules\chat\Chat;
-use common\modules\game\Game;
-use common\modules\homeBackend\HomeBackend;
-use common\modules\homeFrontend\HomeFrontend;
-use common\modules\image\Image;
-use common\modules\profile\Profile;
-use common\modules\sale\Sale;
-use common\modules\user\User;
+use yiiCustom\base\Module;
 
 /**
  * Вспомогательный компонент-провайдер для работы с включёнными модулями.

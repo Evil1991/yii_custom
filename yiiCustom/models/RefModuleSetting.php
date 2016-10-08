@@ -46,7 +46,6 @@ class RefModuleSetting extends ActiveRecord {
 		return [
 			[static::ATTR_MODULE_NAME, RequiredValidator::class],
 			[static::ATTR_PARAM_NAME, RequiredValidator::class],
-			[static::ATTR_PARAM_VALUE, RequiredValidator::class],
 			[static::ATTR_TYPE_CAST, RequiredValidator::class],
 			[static::ATTR_TYPE_CAST, function() {
 				return in_array($this->type_cast, static::TYPE_CAST_LIST);

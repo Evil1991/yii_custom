@@ -13,7 +13,10 @@ use yii\caching\TagDependency;
 class Module extends \yii\base\Module {
 
 	/** @var RefModuleSetting[] Настройки модуля */
-	protected $moduleSettings;
+	protected $moduleSettings = [];
+
+	/** @var array Конфиг настроек */
+	protected $settingsConfig;
 
 	/**
 	 * @inheritdoc
@@ -23,23 +26,12 @@ class Module extends \yii\base\Module {
 
 		$this->controllerNamespace = 'common' . '\\modules\\' . $this->id . '\\' . Yii::$app->configManager->getEntryPoint() . '\\controllers';
 
-		$cacheKey = __CLASS__ . 'moduleSettins-' . $this->id;
-		$moduleSettings = Yii::$app->cache->get($cacheKey);
+		$this->settingsConfig = $this->settings();
 
-		if ($moduleSettings === false) {
-			$moduleSettings = RefModuleSetting::find()
-				->where([
-					RefModuleSetting::ATTR_MODULE_NAME => $this->id,
-				])
-				->indexBy(RefModuleSetting::ATTR_PARAM_NAME)
-				->all();
-
-			Yii::$app->cache->set($cacheKey, $moduleSettings, 3600 * 2, new TagDependency([
-				'tags' => RefModuleSetting::class,
-			]));
+		//если у модуля есть настройки, то инициализируем их
+		if (count($this->settingsConfig) > 0) {
+			$this->initSettings();
 		}
-
-		$this->moduleSettings = $moduleSettings;
 	}
 
 	/**
@@ -65,12 +57,7 @@ class Module extends \yii\base\Module {
 		$settingsOptions = $this->settings();
 
 		if (array_key_exists($name, $settingsOptions) === true) {
-			if (array_key_exists($name, $this->modules) === false) {
-				return null;
-			}
-			else {
-				return $this->moduleSettings[$name]->getValue();
-			}
+			return $this->moduleSettings[$name]->getValue();
 		}
 
 		return parent::__get($name);
@@ -84,22 +71,22 @@ class Module extends \yii\base\Module {
 		$settingsOptions = $this->settings();
 
 		if (array_key_exists($name, $settingsOptions) === true) {
-			if (array_key_exists($name, $this->moduleSettings) === true) {
-				$setting = $this->moduleSettings[$name];
-			}
-			else {
-				$setting = new RefModuleSetting();
-
-				$setting->module_name = $this->id;
-				$setting->param_name  = $name;
-				$setting->type_cast   = $settingsOptions[$name]['type_cast'];
-			}
-
-			$setting->setValue($value);
+			$this->moduleSettings[$name]->setValue($value);
 		}
 		else {
 			parent::__set($name, $value);
 		}
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	public function __isset($name) {
+		if (array_key_exists($name, $this->settingsConfig) === true) {
+			return true;
+		}
+
+		return parent::__isset($name);
 	}
 
 	/**
@@ -110,7 +97,7 @@ class Module extends \yii\base\Module {
 	public function saveSettings() {
 		foreach ($this->moduleSettings as $moduleSetting) {
 			if ($moduleSetting->save() === false) {
-				throw new InvalidConfigException('Некорректное значение параметра настройки: ' . $moduleSetting->param_name . ', ошибки: ' . $moduleSetting->errors);
+				throw new InvalidConfigException('Некорректное значение параметра настройки: ' . $moduleSetting->param_name . ', ошибки: ' . print_r($moduleSetting->errors, true));
 			}
 		}
 
@@ -123,28 +110,44 @@ class Module extends \yii\base\Module {
 	 * @return RefModuleSetting[]
 	 */
 	public function getSettings() {
-		$settingsOptions = $this->settings();
+		return $this->moduleSettings;
+	}
 
-		$settingModels = [];/** @var RefModuleSetting[] $settingModels */
+	/**
+	 * Инициализация настроек модуля.
+	 */
+	protected function initSettings() {
+		$cacheKey       = __CLASS__ . 'moduleSettins-' . $this->id . '.v2';
+		$moduleSettings = Yii::$app->cache->get($cacheKey);/** @var RefModuleSetting[] $moduleSettings */
 
-		//проверяем, по каким настройкам есть записи в БД. Если их нет - то создаём пустые модели
-		foreach ($settingsOptions as $name => $options) {
-			if (array_key_exists($name, $this->moduleSettings) === true) {
-				$settingModels[$name] = $this->moduleSettings[$name];
-			}
-			else {
+		if ($moduleSettings === false) {
+			$moduleSettings = RefModuleSetting::find()
+				->where([
+					RefModuleSetting::ATTR_MODULE_NAME => $this->id,
+				])
+				->indexBy(RefModuleSetting::ATTR_PARAM_NAME)
+				->all();
+
+			Yii::$app->cache->set($cacheKey, $moduleSettings, 3600 * 2, new TagDependency([
+				'tags' => RefModuleSetting::class,
+			]));
+		}
+
+		//перебираем настройки из конфига. Если для какой-либо нет записи, то создаём пустую
+		foreach ($this->settingsConfig as $name => $settingConfig) {
+			if (array_key_exists($name, $moduleSettings) === false) {
 				$setting = new RefModuleSetting();
 
 				$setting->module_name = $this->id;
 				$setting->param_name  = $name;
-				$setting->type_cast   = $settingsOptions[$name]['type_cast'];
+				$setting->type_cast   = $settingConfig['type_cast'];
 
-				$settingModels[$name] = $setting;
+				$moduleSettings[$name] = $setting;
 			}
 
-			$settingModels[$name]->title       = $settingsOptions[$name]['title'];
+			$moduleSettings[$name]->title = $settingConfig['title'];
 		}
 
-		return $settingModels;
+		$this->moduleSettings = $moduleSettings;
 	}
 }
