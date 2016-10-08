@@ -121,7 +121,7 @@ class Module extends \yii\base\Module {
 		$loadedModuleSettings = Yii::$app->cache->get($cacheKey);/** @var RefModuleSetting[] $moduleSettings */
 
 		if ($loadedModuleSettings === false) {
-			$moduleSettings = RefModuleSetting::find()
+			$loadedModuleSettings = RefModuleSetting::find()
 				->where([
 					RefModuleSetting::ATTR_MODULE_NAME => $this->id,
 				])
