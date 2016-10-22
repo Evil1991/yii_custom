@@ -117,6 +117,14 @@ class Module extends \yii\base\Module {
 	 * Инициализация настроек модуля.
 	 */
 	protected function initSettings() {
+		//проверяем наличие таблицы настроек. Если её нет, то настройки не загружаем
+
+		$tableSchema = Yii::$app->db->schema->getTableSchema(RefModuleSetting::tableName());
+
+		if ($tableSchema === null) {
+			return;
+		}
+
 		$cacheKey       = __CLASS__ . 'moduleSettins-' . $this->id . '.v2';
 		$loadedModuleSettings = Yii::$app->cache->get($cacheKey);/** @var RefModuleSetting[] $moduleSettings */
 
