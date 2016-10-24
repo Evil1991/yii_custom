@@ -96,7 +96,7 @@ class StringHelper extends \yii\helpers\StringHelper {
 	 * @param string
 	 * @return string
 	 */
-	protected function transliterate($title) {
+	public static function transliterate($title) {
 		$title = preg_replace('/\[([^\]]+)\]/u', '', $title);
 		$title = preg_replace('/\(([^\)]+)\)/u', '', $title);
 
