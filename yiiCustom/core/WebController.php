@@ -65,23 +65,24 @@ class WebController extends Controller {
 	/**
 	 * Получение ссылки на указанное действие исходя из контроллера.
 	 *
-	 * @param string $actionName Название действия
-	 * @param array $actionParams Дополнительные параметры
+	 * @param string $actionName   Название действия
+	 * @param array  $actionParams Дополнительные параметры
+	 * @param bool   $withDomain   Включить в ссылку домен и протокол
 	 *
 	 * @return string
 	 */
-	public static function getActionUrl($actionName, array $actionParams = []) {
+	public static function getActionUrl($actionName, array $actionParams = [], $withDomain = false) {
 		// -- Определяем, относится ли контроллер к текущей точке входа или нет
-		$prefix = null;
+//		$prefix = null;
 		$domain = null;
 
 		$configManager = Yii::$app->configManager;
 
 		$controllerEntryPoint = preg_replace('/^.*\\\\(.*?)\\\\controllers.*$/', '\1', static::getNamespace());
-		if ($controllerEntryPoint !== $configManager->getEntryPoint()) {
-			$prefix = $controllerEntryPoint . '/';
+		if (($withDomain === true) || ($controllerEntryPoint !== $configManager->getEntryPoint())) {
+//			$prefix = $controllerEntryPoint . '/';
 
-			$domain = '//' . Yii::$app->env->getDomainForEntryPoint($controllerEntryPoint);
+			$domain = 'http://' . Yii::$app->env->getDomainForEntryPoint($controllerEntryPoint);
 		}
 
 		// -- -- -- --
@@ -97,7 +98,7 @@ class WebController extends Controller {
 			$controllerName,
 			$actionName,
 		]);
-		$actionParams[0] = '/' . $prefix . $actionParams[0];
+		$actionParams[0] = '/' . $actionParams[0];
 
 		$url = Yii::$app->urlManager->createUrl($actionParams);
 		if (null !== $domain) {
