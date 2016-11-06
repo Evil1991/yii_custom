@@ -40,6 +40,7 @@ class Module extends \yii\base\Module {
 	 * 'setting_name' => [
 	 *  'title' => (название по-русски)
 	 *  'type_cast' => (тип)
+	 *  'default' => (значение)
 	 * ],
 	 * ...
 	 *
@@ -153,6 +154,10 @@ class Module extends \yii\base\Module {
 				$setting->module_name = $this->id;
 				$setting->param_name  = $name;
 				$setting->type_cast   = $settingConfig['type_cast'];
+
+				if (array_key_exists('default', $settingConfig) === true) {
+					$setting->param_value = $settingConfig['default'];
+				}
 
 				$moduleSettings[$name] = $setting;
 			}

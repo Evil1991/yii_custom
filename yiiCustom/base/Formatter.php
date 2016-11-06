@@ -109,12 +109,13 @@ class Formatter extends \yii\i18n\Formatter {
 	/**
 	 * Вывод цены
 	 *
-	 * @param float $value
+	 * @param float $value        Значение
+	 * @param bool  $withDecimals С сотыми долями суммы (копейками)
 	 *
 	 * @return string
 	 */
-	public function asPrice($value) {
-		return number_format($value, 0, '.', ' ') . ' руб.';
+	public function asPrice($value, $withDecimals = false) {
+		return number_format($value, $withDecimals ? 2 : 0, '.', ' ') . ' руб.';
 	}
 
 	/**
