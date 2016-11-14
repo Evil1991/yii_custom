@@ -9,6 +9,8 @@ class ActiveQuery extends \yii\db\ActiveQuery {
 
 	/**
 	 * Установка чтения с блокировкой.
+	 *
+	 * @return static
 	 */
 	public function forUpdate() {
 		$this->isSelectForUpdate = true;

@@ -5,6 +5,7 @@ namespace yiiCustom\core;
 use Yii;
 use yii\helpers\StringHelper;
 use yii\web\Controller;
+use yii\web\Request;
 
 /**
  * Расширение класса контроллера под проект.
@@ -65,13 +66,14 @@ class WebController extends Controller {
 	/**
 	 * Получение ссылки на указанное действие исходя из контроллера.
 	 *
-	 * @param string $actionName   Название действия
-	 * @param array  $actionParams Дополнительные параметры
-	 * @param bool   $withDomain   Включить в ссылку домен и протокол
+	 * @param string    $actionName   Название действия
+	 * @param array     $actionParams Дополнительные параметры
+	 * @param bool      $withDomain   Включить в ссылку домен и протокол
+	 * @param bool|null $secure       Https или http, если null, то будет взят текущий протокол
 	 *
 	 * @return string
 	 */
-	public static function getActionUrl($actionName, array $actionParams = [], $withDomain = false) {
+	public static function getActionUrl($actionName, array $actionParams = [], $withDomain = false, $secure = null) {
 		// -- Определяем, относится ли контроллер к текущей точке входа или нет
 //		$prefix = null;
 		$domain = null;
@@ -82,7 +84,18 @@ class WebController extends Controller {
 		if (($withDomain === true) || ($controllerEntryPoint !== $configManager->getEntryPoint())) {
 //			$prefix = $controllerEntryPoint . '/';
 
-			$domain = 'http://' . Yii::$app->env->getDomainForEntryPoint($controllerEntryPoint);
+			if ($secure === null) {
+				if (Yii::$app->request instanceof Request) {
+					$secure = Yii::$app->request->isSecureConnection;
+				}
+				else {
+					$secure = false;
+				}
+			}
+
+			$protocol = $secure ? 'https://' : 'http://';
+
+			$domain = $protocol . Yii::$app->env->getDomainForEntryPoint($controllerEntryPoint);
 		}
 
 		// -- -- -- --
