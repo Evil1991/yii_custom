@@ -23,6 +23,7 @@ class RefModuleSetting extends ActiveRecord {
 	const ATTR_TYPE_CAST   = 'type_cast';
 
 	const TYPE_INT    = 'int';
+	const TYPE_BOOL    = 'bool';
 	const TYPE_FLOAT  = 'float';
 	const TYPE_STRING = 'string';
 	const TYPE_ARRAY  = 'array';
@@ -30,6 +31,7 @@ class RefModuleSetting extends ActiveRecord {
 
 	const TYPE_CAST_LIST = [
 		self::TYPE_INT,
+		self::TYPE_BOOL,
 		self::TYPE_FLOAT,
 		self::TYPE_STRING,
 		self::TYPE_ARRAY,
@@ -62,6 +64,9 @@ class RefModuleSetting extends ActiveRecord {
 		switch ($this->type_cast) {
 			case static::TYPE_INT:
 				return (int) $this->param_value;
+
+			case static::TYPE_BOOL:
+				return (bool) $this->param_value;
 
 			case static::TYPE_FLOAT:
 				return (float) $this->param_value;
