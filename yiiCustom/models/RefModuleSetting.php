@@ -2,6 +2,7 @@
 
 namespace vendor\yii_custom\yiiCustom\models;
 
+use yii\validators\RangeValidator;
 use yii\validators\RequiredValidator;
 use yiiCustom\base\ActiveRecord;
 
@@ -23,7 +24,7 @@ class RefModuleSetting extends ActiveRecord {
 	const ATTR_TYPE_CAST   = 'type_cast';
 
 	const TYPE_INT    = 'int';
-	const TYPE_BOOL    = 'bool';
+	const TYPE_BOOL   = 'bool';
 	const TYPE_FLOAT  = 'float';
 	const TYPE_STRING = 'string';
 	const TYPE_ARRAY  = 'array';
@@ -49,9 +50,7 @@ class RefModuleSetting extends ActiveRecord {
 			[static::ATTR_MODULE_NAME, RequiredValidator::class],
 			[static::ATTR_PARAM_NAME, RequiredValidator::class],
 			[static::ATTR_TYPE_CAST, RequiredValidator::class],
-			[static::ATTR_TYPE_CAST, function() {
-				return in_array($this->type_cast, static::TYPE_CAST_LIST);
-			}],
+			[static::ATTR_TYPE_CAST, RangeValidator::class, 'range' => static::TYPE_CAST_LIST],
 		];
 	}
 
@@ -106,6 +105,7 @@ class RefModuleSetting extends ActiveRecord {
 				break;
 
 			case static::TYPE_INT:
+			case static::TYPE_BOOL:
 				$this->param_value = (int) $value;
 
 				break;
