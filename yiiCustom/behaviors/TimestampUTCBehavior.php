@@ -4,6 +4,7 @@ namespace yiiCustom\behaviors;
 
 use DateTime;
 use DateTimeZone;
+use vendor\yii_custom\yiiCustom\helpers\DateHelper;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -24,7 +25,7 @@ class TimestampUTCBehavior extends TimestampBehavior {
 	protected function getValue($event) {
 		$datetime = new DateTime('now', new DateTimeZone('UTC'));
 
-		$result = $datetime->format('Y-m-d H:i:s');
+		$result = $datetime->format(DateHelper::DATE_TIME_DATABASE_FORMAT);
 
 		if ($this->decimalsCount !== null) {
 			$result .= substr((string)microtime() , 1, $this->decimalsCount + 1);

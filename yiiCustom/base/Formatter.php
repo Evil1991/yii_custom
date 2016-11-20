@@ -3,6 +3,7 @@
 namespace yiiCustom\base;
 
 use DateTime;
+use vendor\yii_custom\yiiCustom\helpers\DateHelper;
 use Yii;
 use yii\helpers\Html;
 
@@ -135,7 +136,7 @@ class Formatter extends \yii\i18n\Formatter {
 
 		$dateTime->setTimezone(new DateTimeZone('UTC'));
 
-		return $dateTime->format('Y-m-d H:i:s');
+		return $dateTime->format(DateHelper::DATE_TIME_DATABASE_FORMAT);
 	}
 
 }
