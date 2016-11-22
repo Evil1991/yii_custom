@@ -36,6 +36,8 @@ class BackendController extends WebController {
 
 			//если пользователь гость, то редиректим его на страницу авторизации
 			if (Yii::$app->user->isGuest) {
+				Yii::$app->user->setReturnUrl(Yii::$app->request->getUrl());
+
 				$this->redirect(Yii::$app->moduleManager->modules->user->getAuthUrl());
 
 				return false;

@@ -57,9 +57,9 @@ class PhoneValidator extends Validator {
 
 			// -- Форматируем телефон в зависимости от того, мобильный он или нет
 			if (9 == $matches[2]) {// В номерах мобильных телефонов вторая цифра всегда 9
-				$value = preg_replace('/(\d{3})(\d{3})(\d{4})/', '+7 \1 \2 \3', $value);
+				$value = preg_replace('/(\d{3})(\d{3})(\d{4})/', '7\1\2\3', $value);
 			} else {
-				$value = preg_replace('/(\d{3})(\d{3})(\d{2})(\d{2})/', '+7 (\1) \2-\3-\4', $value);
+				$value = preg_replace('/(\d{3})(\d{3})(\d{2})(\d{2})/', '7(\1)\2-\3-\4', $value);
 			}
 			// -- -- -- --
 
