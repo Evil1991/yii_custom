@@ -1,6 +1,6 @@
 <?php
 
-namespace vendor\yii_custom\yiiCustom\helpers;
+namespace yiiCustom\helpers;
 
 class DateHelper {
 

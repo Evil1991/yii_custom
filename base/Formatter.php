@@ -3,7 +3,7 @@
 namespace yiiCustom\base;
 
 use DateTime;
-use vendor\yii_custom\yiiCustom\helpers\DateHelper;
+use yiiCustom\helpers\DateHelper;
 use Yii;
 use yii\helpers\Html;
 

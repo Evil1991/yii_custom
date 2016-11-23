@@ -1,6 +1,6 @@
 <?php
 
-namespace vendor\yii_custom\yiiCustom\console\components;
+namespace yiiCustom\console\components;
 
 use Yii;
 use yii\base\InvalidParamException;

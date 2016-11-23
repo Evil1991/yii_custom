@@ -1,5 +1,5 @@
 <?php
-use vendor\yii_custom\yiiCustom\models\RefModuleSetting;
+use yiiCustom\models\RefModuleSetting;
 use yii\widgets\ActiveForm;
 use yiiCustom\backend\controllers\SettingsController;
 use yiiCustom\core\View;

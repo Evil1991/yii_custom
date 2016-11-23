@@ -69,6 +69,6 @@ class SettingsController extends BackendController {
 	 * @inheritdoc
 	 */
 	public function getViewPath() {
-		return '@vendor/yii_custom/yiiCustom/views/backend/settings';
+		return '@vendor/Evil1991/yii_custom/views/backend/settings';
 	}
 }

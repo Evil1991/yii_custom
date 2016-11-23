@@ -2,7 +2,7 @@
 
 namespace yiiCustom\base;
 
-use vendor\yii_custom\yiiCustom\models\RefModuleSetting;
+use yiiCustom\models\RefModuleSetting;
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\caching\TagDependency;

@@ -4,7 +4,7 @@ namespace yiiCustom\behaviors;
 
 use DateTime;
 use DateTimeZone;
-use vendor\yii_custom\yiiCustom\helpers\DateHelper;
+use yiiCustom\helpers\DateHelper;
 use yii\behaviors\TimestampBehavior;
 
 /**

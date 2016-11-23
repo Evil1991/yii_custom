@@ -1,6 +1,6 @@
 <?php
 
-namespace vendor\yii_custom\yiiCustom\models;
+namespace yiiCustom\models;
 
 use yii\validators\RangeValidator;
 use yii\validators\RequiredValidator;

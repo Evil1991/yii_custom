@@ -1,8 +1,8 @@
 <?php
 
-namespace vendor\yii_custom\yiiCustom\console\controllers;
+namespace yiiCustom\console\controllers;
 
-use vendor\yii_custom\yiiCustom\console\components\MigrationProvider;
+use yiiCustom\console\components\MigrationProvider;
 use Yii;
 use yii\console\Controller;
 use yii\helpers\Console;
