@@ -43,4 +43,13 @@ class ModuleManagerModules {
 	public function __isset($name) {
 		return array_key_exists($name, $this->_modules);
 	}
+
+	/**
+	 * Получение инициализированных модулей.
+	 *
+	 * @return Module[]
+	 */
+	public function getModules() {
+		return $this->_modules;
+	}
 }
