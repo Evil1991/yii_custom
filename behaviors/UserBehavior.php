@@ -49,6 +49,10 @@ class UserBehavior extends AttributeBehavior {
 	 * @inheritdoc
 	 */
 	protected function getValue($event) {
+		if (defined('STDIN') === true) {
+			return null;
+		}
+
 		if (Yii::$app->user !== null) {
 			return Yii::$app->user->id;
 		}
