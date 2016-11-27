@@ -73,10 +73,10 @@ class Formatter extends \yii\i18n\Formatter {
 	 * @param mixed $value
 	 * @return string
 	 */
-	public function asBoolean($value) {
+	public function asBoolean($value, $trueText = 'Да', $falseText = 'Нет') {
 		return $value
-			? (Html::tag('span', '', ['class' => 'glyphicon glyphicon-ok']) . 'Да')
-			: (Html::tag('span', '', ['class' => 'glyphicon glyphicon-remove']) . 'Нет');
+			? (Html::tag('span', '', ['class' => 'glyphicon glyphicon-ok']) . $trueText)
+			: (Html::tag('span', '', ['class' => 'glyphicon glyphicon-remove']) . $falseText);
 	}
 
 	/**
