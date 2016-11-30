@@ -75,14 +75,14 @@ class WebController extends Controller {
 	 */
 	public static function getActionUrl($actionName, array $actionParams = [], $withDomain = false, $secure = null) {
 		// -- Определяем, относится ли контроллер к текущей точке входа или нет
-//		$prefix = null;
+		$prefix = null;
 		$domain = null;
 
 		$configManager = Yii::$app->configManager;
 
 		$controllerEntryPoint = preg_replace('/^.*\\\\(.*?)\\\\controllers.*$/', '\1', static::getNamespace());
 		if (($withDomain === true) || ($controllerEntryPoint !== $configManager->getEntryPoint())) {
-//			$prefix = $controllerEntryPoint . '/';
+			$prefix = $controllerEntryPoint . '/';
 
 			if ($secure === null) {
 				if (Yii::$app->request instanceof Request) {
@@ -111,7 +111,7 @@ class WebController extends Controller {
 			$controllerName,
 			$actionName,
 		]);
-		$actionParams[0] = '/' . $actionParams[0];
+		$actionParams[0] = '/' . $prefix . $actionParams[0];
 
 		$url = Yii::$app->urlManager->createUrl($actionParams);
 		if (null !== $domain) {
