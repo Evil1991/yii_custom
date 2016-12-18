@@ -11,9 +11,6 @@ use yii\web\UnauthorizedHttpException;
  */
 class BackendController extends WebController {
 
-	/** @var string Основная роль для доступа в админку. Если не задано, то доступ не будет проверяться на данном уровне */
-	protected $commonRoleAccess = 'admin';
-
 	/** @var string URL для редиректа в случае отсутствия доступа. Если не задано, то будет выброшено исключение */
 	protected $noAccessRedirectUrl;
 
@@ -30,21 +27,22 @@ class BackendController extends WebController {
 
 		if ($this->needAuthorise) {
 
-			if ($this->commonRoleAccess === null) {
-				return true;
-			}
-
 			//если пользователь гость, то редиректим его на страницу авторизации
 			if (Yii::$app->user->isGuest) {
 				Yii::$app->user->setReturnUrl(Yii::$app->request->getUrl());
 
+				//todo убрать здесь и ниже зависимость от модуля auth, реализуемого в приложении
 				$this->redirect(Yii::$app->moduleManager->modules->user->getAuthUrl());
 
 				return false;
 			}
 
+			if (Yii::$app->moduleManager->modules->user->commonRoleAccess === null) {
+				return true;
+			}
+
 			//если он уже авторизован, но не имеет права на доступ в админку, то отправляем на соответствующую страницу
-			if (Yii::$app->user->can($this->commonRoleAccess) === false) {
+			if (Yii::$app->user->can(Yii::$app->moduleManager->modules->user->commonRoleAccess) === false) {
 				if ($this->noAccessRedirectUrl !== null) {
 					$this->redirect($this->noAccessRedirectUrl);
 				}
