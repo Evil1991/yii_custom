@@ -82,7 +82,9 @@ class WebController extends Controller {
 
 		$controllerEntryPoint = preg_replace('/^.*\\\\(.*?)\\\\controllers.*$/', '\1', static::getNamespace());
 		if (($withDomain === true) || ($controllerEntryPoint !== $configManager->getEntryPoint())) {
-			$prefix = $controllerEntryPoint . '/';
+			if ($controllerEntryPoint !== $configManager->getEntryPoint()) {
+				$prefix = $controllerEntryPoint . '/';
+			}
 
 			if ($secure === null) {
 				if (Yii::$app->request instanceof Request) {
