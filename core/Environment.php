@@ -32,6 +32,6 @@ class Environment extends Component {
 			return $currentDomain;
 		}
 
-		return $entryPoint . $currentDomain;
+		return $entryPoint . '.' . $currentDomain;
 	}
 }
