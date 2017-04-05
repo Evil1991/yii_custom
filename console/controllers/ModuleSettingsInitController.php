@@ -13,7 +13,7 @@ use yii\helpers\Console;
 class ModuleSettingsInitController extends Controller {
 
 	const MIGRATIONS = [
-		'@vendor/yii_custom/yiiCustom/migrations' => 'module_settings_tables',
+		'@vendor/Evil1991/yii_custom/migrations' => 'module_settings_tables',
 	];
 
 	/**
