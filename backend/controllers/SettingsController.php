@@ -51,11 +51,11 @@ class SettingsController extends BackendController {
 				$isSuccess = true;
 			}
 			catch (InvalidConfigException $e) {
-				Yii::$app->session->addFlash(Alert::TYPE_ERROR, 'Ошибка при сохранении настроек: ' . $e->getMessage());
+				Yii::$app->session->addFlash('alert-warning', 'Ошибка при сохранении настроек: ' . $e->getMessage());
 			}
 
 			if ($isSuccess === true) {
-				Yii::$app->session->addFlash(Alert::TYPE_SUCCESS, 'Настройки успешно сохранены');
+				Yii::$app->session->addFlash('alert-success', 'Настройки успешно сохранены');
 			}
 		}
 
