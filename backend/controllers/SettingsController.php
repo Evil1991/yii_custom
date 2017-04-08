@@ -2,10 +2,10 @@
 
 namespace yiiCustom\backend\controllers;
 
-use common\widgets\Alert;
 use Yii;
 use yii\base\InvalidConfigException;
 use yiiCustom\base\BackendController;
+use yiiCustom\widgets\Alert;
 
 /**
  * Контроллер настроек модуля. Базовый класс контроллера
