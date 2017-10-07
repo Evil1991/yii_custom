@@ -41,7 +41,7 @@ use yiiCustom\core\View;
 		<tr>
 			<td><?= $setting->title ?></td>
 			<td>
-				<input type="text" name="<?= SettingsController::PARAM_SCOPE ?>[<?= $setting->param_name ?>]" value="<?= $setting->getValue() ?>">
+				<input type="text" class="form-control" name="<?= SettingsController::PARAM_SCOPE ?>[<?= $setting->param_name ?>]" value="<?= $setting->getValue() ?>">
 			</td>
 		</tr>
 	<?php endforeach ?>
