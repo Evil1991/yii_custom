@@ -70,16 +70,22 @@ class ConfigCollector {
 			// -- -- -- --
 
 			// -- Определяем входную точку
-			static::$_entryPoint = static::ENTRY_POINT_FRONTEND;
 
-			if (
-					(0 === strpos(@$_SERVER['SERVER_NAME'], 'backend.'))
-					|| (0 === strpos(@$_SERVER['SERVER_NAME'], 'console.')) // У консоли через веб только одна точка входа - backend
-			) {
-				static::$_entryPoint = static::ENTRY_POINT_BACKEND;
+			if (defined('ENTRY_POINT') === true) {
+				static::$_entryPoint = ENTRY_POINT;
 			}
-			elseif (static::ENTRY_POINT_CONSOLE === basename(static::$_runFromPath)) {
-				static::$_entryPoint = static::ENTRY_POINT_CONSOLE;
+			else {
+				static::$_entryPoint = static::ENTRY_POINT_FRONTEND;
+
+				if (
+						(0 === strpos(@$_SERVER['SERVER_NAME'], 'backend.'))
+						|| (0 === strpos(@$_SERVER['SERVER_NAME'], 'console.')) // У консоли через веб только одна точка входа - backend
+				) {
+					static::$_entryPoint = static::ENTRY_POINT_BACKEND;
+				}
+				elseif (static::ENTRY_POINT_CONSOLE === basename(static::$_runFromPath)) {
+					static::$_entryPoint = static::ENTRY_POINT_CONSOLE;
+				}
 			}
 			// -- -- -- --
 
