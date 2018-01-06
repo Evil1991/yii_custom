@@ -19,4 +19,7 @@ class AjaxResponse {
 	/** @var string Сообщение пользователю */
 	public $message;
 
+	/** @var string[] Ошибки */
+	public $errors = [];
+
 }
