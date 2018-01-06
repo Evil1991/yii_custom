@@ -2,6 +2,7 @@
 
 namespace yiiCustom\models;
 
+use yii\validators\DefaultValueValidator;
 use yii\validators\RangeValidator;
 use yii\validators\RequiredValidator;
 use yiiCustom\base\ActiveRecord;
@@ -49,6 +50,7 @@ class RefModuleSetting extends ActiveRecord {
 		return [
 			[static::ATTR_MODULE_NAME, RequiredValidator::class],
 			[static::ATTR_PARAM_NAME, RequiredValidator::class],
+			[static::ATTR_PARAM_VALUE, RequiredValidator::class, 'strict' => true],
 			[static::ATTR_TYPE_CAST, RequiredValidator::class],
 			[static::ATTR_TYPE_CAST, RangeValidator::class, 'range' => static::TYPE_CAST_LIST],
 		];

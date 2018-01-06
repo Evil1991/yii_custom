@@ -12,6 +12,10 @@ use yii\caching\TagDependency;
  */
 class Module extends \yii\base\Module {
 
+	const SETTING_PARAM_TITLE = 'title';
+	const SETTING_PARAM_TYPE_CAST = 'type_cast';
+	const SETTING_PARAM_DEFAULT_VALUE = 'default_value';
+
 	/** @var RefModuleSetting[] Настройки модуля */
 	protected $moduleSettings = [];
 
