@@ -2,6 +2,8 @@
 
 namespace vendor\Evil1991\yii_custom\validators;
 
+use DateTime;
+
 /**
  * Валидатор для даты, поддерживающий даты в формате Atom.
  */
