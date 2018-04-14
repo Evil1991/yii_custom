@@ -8,7 +8,7 @@ namespace yiiCustom\base;
 class AjaxResponse {
 
 	/** @var bool Общий результат */
-	public $result;
+	public $result = false;
 
 	/** @var array Данные */
 	public $data = [];
