@@ -16,4 +16,7 @@ class DateHelper {
 	/** Количество секунд в 1 сутках */
 	const SEC_OF_DAY = self::SEC_OF_HOUR * 24;
 
+	/** Дата-время начала эпохи UNIX */
+	const UNIT_TIME_START = '1970-01-01 00:00:00';
+
 }
