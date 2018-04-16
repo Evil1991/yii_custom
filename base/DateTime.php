@@ -38,4 +38,13 @@ class DateTime extends \DateTime {
 	public function isWeekend() {
 		return in_array($this->getWeekdayNumber(), [5,6]);
 	}
+
+	/**
+	 * Конвертация даты-времени к началу недели.
+	 */
+	public function convertToWeekBegin() {
+		$interval = new \DateInterval('P' . $this->getWeekdayNumber() . 'D');
+		$interval->invert = 1;
+		$this->add($interval);
+	}
 }
