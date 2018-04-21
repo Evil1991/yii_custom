@@ -1,7 +1,8 @@
 <?php
+
 namespace yiiCustom\validators;
 
-use common\yii\validators\FilterValidator;
+use yii\validators\FilterValidator;
 
 /**
  * Валидатор для удаления пробелов в начале и в конце.
