@@ -154,4 +154,15 @@ class StringHelper extends \yii\helpers\StringHelper {
 		return $title;
 	}
 
+	/**
+	 * Конвертация строки в Title case (с заглавной буквы)/
+	 *
+	 * @param string $input Строка
+	 *
+	 * @return string
+	 */
+	public static function toTitleCase($input) {
+		return mb_strtoupper(mb_substr($input, 0, 1)) . mb_substr($input, 1);
+	}
+
 }
