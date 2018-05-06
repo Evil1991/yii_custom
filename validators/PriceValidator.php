@@ -21,7 +21,7 @@ class PriceValidator extends NumberValidator {
 	 * @inheritdoc
 	 */
 	public function validateAttribute($model, $attribute) {
-		$value = (int)$model->$attribute;
+		$value = (float)$model->$attribute;
 		if (!$this->acceptNegative && $value < 0) {
 			$this->addError($model, $attribute, '{attribute} не может быть меньше 0');
 		}
