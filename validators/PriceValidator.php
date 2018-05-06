@@ -26,7 +26,8 @@ class PriceValidator extends NumberValidator {
 			$this->addError($model, $attribute, '{attribute} не может быть меньше 0');
 		}
 
-		if (!$this->acceptZero && $value === 0) {
+		//т.к. стоимость - это float, то сравнивать надо с 0.0, т.к. 0 - это int
+		if (!$this->acceptZero && $value === 0.0) {
 			$this->addError($model, $attribute, '{attribute} не может быть равно 0');
 		}
 
