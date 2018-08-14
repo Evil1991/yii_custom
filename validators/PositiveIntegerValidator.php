@@ -1,7 +1,7 @@
 <?php
 namespace vendor\Evil1991\yii_custom\validators;
 
-use common\yii\validators\IntegerValidator;
+use yii\validators\IntegerValidator;
 
 /**
  * @inheritdoc

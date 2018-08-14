@@ -1,7 +1,7 @@
 <?php
 namespace vendor\Evil1991\yii_custom\validators;
 
-use common\yii\validators\FilterValidator;
+use yii\validators\FilterValidator;
 
 /**
  * Расширение валидатора: автоматическое приведение к типу float.
