@@ -41,7 +41,14 @@ use yiiCustom\core\View;
 		<tr>
 			<td><?= $setting->title ?></td>
 			<td>
-				<input type="text" class="form-control" name="<?= SettingsController::PARAM_SCOPE ?>[<?= $setting->param_name ?>]" value="<?= $setting->getValue() ?>">
+				<?php if ($setting->type_cast === $setting::TYPE_ARRAY): ?>
+					<textarea name="<?= SettingsController::PARAM_SCOPE ?>[<?= $setting->param_name ?>]"
+					          cols="50"
+					          rows="5"
+					><?= implode("\n", $setting->getValue()) ?></textarea>
+				<?php else: ?>
+					<input type="text" class="form-control" name="<?= SettingsController::PARAM_SCOPE ?>[<?= $setting->param_name ?>]" value="<?= $setting->getValue() ?>">
+				<?php endif ?>
 			</td>
 		</tr>
 	<?php endforeach ?>

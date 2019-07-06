@@ -160,7 +160,14 @@ class Module extends \yii\base\Module {
 				$setting->type_cast   = $settingConfig['type_cast'];
 
 				if (array_key_exists('default_value', $settingConfig) === true) {
-					$setting->param_value = $settingConfig['default_value'];
+					$value = $settingConfig['default_value'];
+
+					if (is_array($value)) {
+						$setting->param_value = json_encode($value);
+					}
+					else {
+						$setting->param_value = $settingConfig['default_value'];
+					}
 				}
 
 				$moduleSettings[$name] = $setting;

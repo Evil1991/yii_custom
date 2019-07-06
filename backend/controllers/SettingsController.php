@@ -42,6 +42,18 @@ class SettingsController extends BackendController {
 			$isSuccess = false;
 			foreach (Yii::$app->request->post()[static::PARAM_SCOPE] as $param => $value) {
 				if (array_key_exists($param, $settings) === true) {
+					$setting = $settings[$param];
+
+					if ($setting->type_cast === $setting::TYPE_ARRAY) {
+						$value = explode("\n", $value);
+
+						$value = array_map(function($item) {
+							return trim($item);
+						}, $value);
+
+						$value = array_filter($value);
+					}
+
 					Yii::$app->moduleManager->modules->{$moduleName}->{$param} = $value;
 				}
 			}
