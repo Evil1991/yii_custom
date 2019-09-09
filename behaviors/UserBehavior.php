@@ -30,6 +30,9 @@ class UserBehavior extends AttributeBehavior {
 	public $updatedAtAttribute = 'update_user_guid';
 	const ATTR_UPDATED_AT_ATTRIBUTE = 'updatedAtAttribute';
 
+	/** @var int Идентификатор пользователя по умолчанию (если авторизации нет) */
+	public $defaultUserId;
+	const ATTR_DEFAULT_USER_ID = 'defaultUserId';
 
 	/**
 	 * @inheritdoc
@@ -50,14 +53,14 @@ class UserBehavior extends AttributeBehavior {
 	 */
 	protected function getValue($event) {
 		if (defined('STDIN') === true) {
-			return null;
+			return $this->defaultUserId;
 		}
 
-		if (Yii::$app->user !== null) {
+		if (Yii::$app->user->isGuest === false) {
 			return Yii::$app->user->id;
 		}
 
-		return null;
+		return $this->defaultUserId;
 	}
 
 }
